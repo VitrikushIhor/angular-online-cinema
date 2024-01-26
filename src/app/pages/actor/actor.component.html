@@ -1,0 +1,18 @@
+<section class="actor">
+  <mat-spinner class="spinner" *ngIf="isLoading"></mat-spinner>
+  <div class="actor__content">
+    <h1>{{actor.name}}</h1>
+    <img src="https://online-cinema-api.onrender.com{{actor.photo}}" alt="{{actor.name}}">
+    <p>{{actor.description}}</p>
+  </div>
+  <div class="discovery__content">
+    <a *ngFor="let movie of movies" [routerLink]="['/movie',movie.slug]" >
+      <div class="article-card">
+        <div class="content">
+          <p class="title">{{movie.title}}</p>
+        </div>
+        <img src="https://online-cinema-api.onrender.com{{movie.poster}}" alt="article-cover" />
+      </div>
+    </a>
+  </div>
+</section>

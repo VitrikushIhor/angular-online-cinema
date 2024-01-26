@@ -1,0 +1,59 @@
+.container {
+  padding: 20px;
+
+  h1 {
+    margin-bottom: 50px;
+  }
+}
+
+.actors {
+  margin-top: 50px;
+  display: grid;
+  place-items: center;
+  &__content {
+    display: flex;
+
+    a {
+      width: 170px;
+      height: 220px;
+      border-radius: 10px;
+      margin-right: 20px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .infos {
+        display: flex;
+        flex-direction: column;
+        margin-top: 15px;
+
+        span {
+          display: grid;
+          place-items: center;
+        }
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+    }
+  }
+}
+
+
+.slider-wrapper {
+  width: 1000px;
+  height: 350px;
+  margin: 0 auto;
+
+}
+
+
+.spinner {
+  margin: 0 auto;
+  width: 500px;
+  margin-top: 300px;
+}

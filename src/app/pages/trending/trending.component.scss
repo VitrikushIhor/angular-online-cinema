@@ -1,0 +1,15 @@
+.trending {
+  padding: 20px;
+
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+
+.spinner {
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+}

@@ -1,0 +1,20 @@
+<mat-spinner class="spinner" *ngIf="isLoading"></mat-spinner>
+
+<div class="container" *ngIf="!isLoading">
+  <h1>Watch Movies Online</h1>
+  <div class="slider-wrapper">
+    <app-slider [slides]="slides"></app-slider>
+  </div>
+  <div class="actors">
+    <h2>Trending Actors</h2>
+    <div class="actors__content">
+      <a [routerLink]="[actor.url]" *ngFor="let actor of actors">
+        <img src="{{actor.posterPhoto}}" alt="{{actor.content.title}}">
+        <div class="infos">
+          <span>{{actor.content.title}}</span>
+          <span>{{actor.content.subTitle}}</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<section class="movie-create">
+  <app-admin-navbar></app-admin-navbar>
+  <h1>Create Movie</h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <div class="form__inputs">
+      <div class="form__input">
+        <p>Title</p>
+        <mat-form-field class="example-full-width">
+          <mat-label>Title</mat-label>
+          <input formControlName="title" type="text" matInput placeholder="title">
+        </mat-form-field>
+      </div>
+      <div class="form__input">
+        <p>Slug</p>
+        <mat-form-field class="example-full-width">
+          <mat-label>Slug</mat-label>
+          <input formControlName="slug" type="text" matInput placeholder="slug">
+        </mat-form-field>
+      </div>
+      <div class="form__input">
+        <p>Country</p>
+        <mat-form-field class="example-full-width">
+          <mat-label>Country</mat-label>
+          <input formControlName="country" type="text" matInput placeholder="country">
+        </mat-form-field>
+      </div>
+      <div class="form__input">
+        <p>Year</p>
+        <mat-form-field class="example-full-width">
+          <mat-label>Year</mat-label>
+          <input formControlName="year" type="text" matInput placeholder="year">
+        </mat-form-field>
+      </div>
+      <div class="form__input">
+        <p>Duration (Min)</p>
+        <mat-form-field class="example-full-width">
+          <mat-label>Duration</mat-label>
+          <input formControlName="duration" type="text" matInput placeholder="duration">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="selects">
+      <div class="form__input">
+        <p>Genres</p>
+        <mat-form-field>
+          <mat-label>Genres</mat-label>
+          <mat-select formControlName="genres" multiple>
+            <mat-option *ngFor="let genre of genres" [value]="genre._id">{{genre.title}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form__input">
+        <p>Actors</p>
+        <mat-form-field>
+          <mat-label>Actors</mat-label>
+          <mat-select formControlName="actors" multiple>
+            <mat-option *ngFor="let actor of actors" [value]="actor._id">{{actor.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="loading">
+        <div class="photo">
+          <h3>Poster</h3>
+          <input type="file" accept="image/*" (change)="uploadFile($event,'movies','poster')"/>
+          <img *ngIf="posterPreview" [src]="posterPreview" alt="preload poster"/>
+        </div>
+        <div class="photo">
+          <h3>Big Poster</h3>
+          <input type="file" accept="image/*" (change)="uploadFile($event,'movies','bigPoster')"/>
+          <img *ngIf="bigPosterPreview" [src]="bigPosterPreview" alt="preload Big Poster"/>
+        </div>
+        <div class="photo">
+          <h3>Video</h3>
+          <input type="file" accept="video/*" (change)="uploadFile($event,'movies','video')"/>
+        </div>
+      </div>
+    </div>
+
+
+    <button
+      [disabled]="!this.form.valid"
+      type="submit" class="form__button" mat-raised-button color="primary">Create
+      Movie
+    </button>
+  </form>
+
+</section>

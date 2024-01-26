@@ -1,0 +1,28 @@
+<div class="banner">
+  <img src="https://online-cinema-api.onrender.com{{movie.bigPoster}}" alt="{{movie.title}}">
+  <div class="banner__content">
+    <div>
+      <h1>{{movie.title}}</h1>
+      <div>
+        {{movie.parameters.year }}. {{movie.parameters.country}}. {{movie.parameters.duration}} min.
+      </div>
+      <div class="banner__content__genres">
+        <span>Genres</span>
+        <a *ngFor="let genre of movie.genres; let i = index;" routerLink="/genre/{{genre.slug}}">
+          {{ i | genresList: movie.genres.length: genre.name }}
+        </a>
+      </div>
+      <div class="banner__content__actors">
+        <span>Actors</span>
+        <a *ngFor="let actor of movie.actors; let i = index;" routerLink="/actor/{{actor.slug}}">
+          {{ i | genresList: movie.actors.length: actor.name }}
+        </a>
+      </div>
+    </div>
+    <div *ngIf="user">
+      <div class="favorite-btn">
+        <app-favorite-button (click)="toggleFavorite()" [isSmashed]="isSmashed"></app-favorite-button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="comment">
+  <div class="comment__header">
+    <h2>Comments</h2>
+    <div class="line"></div>
+  </div>
+  <div class="comment__body">
+    <div class="user" *ngFor="let comment of comments">
+      <div class="user__content">
+        <div class="user__infos">
+          <div class="user__infos__img">
+            <img src="{{comment.user.avatar}}" alt="">
+          </div>
+          <div class="user__infos__text">
+            <p>{{comment.user.userName}}</p>
+            <p>{{comment.message}}</p>
+          </div>
+        </div>
+        <div *ngIf="user">
+          <mat-icon class="actions" (click)="deleteComment(comment._id)">delete</mat-icon>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div *ngIf="user" class="comment__footer">
+    <form [formGroup]="form">
+      <input formControlName="text" type="text" placeholder="Write Comment" required>
+
+    </form>
+    <mat-icon (click)="onSubmit()" class="arrow">send</mat-icon>
+  </div>
+</div>

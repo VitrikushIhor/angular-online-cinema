@@ -1,0 +1,36 @@
+.form{
+  width: 400px;
+  height: 400px;
+  margin: 15rem auto 0;
+  background-color: #101215;
+  border-radius: 10px;
+  box-shadow: 3px 0px 14px 7px rgba(15, 12, 15, 1);
+  h1{
+    display: grid;
+    place-items: center;
+  }
+  &__inputs{
+    padding: 50px 25px 0;
+    margin: 0 auto;
+    .example-full-width{
+      width: 100%;
+      margin-top: 10px;
+      &:first-of-type{
+        margin-top: 0;
+      }
+    }
+  }
+
+  &__button{
+    height: 45px;
+    width: 200px;
+    display: grid;
+    place-items: center;
+    margin: 40px auto 0;
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background-color: #673ab7 !important;
+    }
+  }
+}

@@ -1,0 +1,82 @@
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subject, takeUntil} from 'rxjs';
+import {InterfaceActor} from '../../../../types/actor.types';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FileService} from '../../../../services/file/file.service';
+import {ActorService} from '../../../../services/actor/actor.service';
+import {ToastrService} from 'ngx-toastr';
+
+@Component({
+  selector: 'app-actor-edit',
+  templateUrl: './actor-edit.component.html',
+  styleUrls: ['./actor-edit.component.scss'],
+})
+export class ActorEditComponent implements OnInit, OnDestroy {
+
+  destroy$: Subject<boolean> = new Subject();
+  actor!: InterfaceActor
+  form!: FormGroup
+  photoPreview: null | string = null
+
+  constructor(
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private fileService: FileService,
+    private actorService: ActorService,
+    private toastr: ToastrService,
+    private router: Router,
+  ) {
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true)
+    this.destroy$.unsubscribe()
+  }
+
+  ngOnInit(): void {
+    this.getData()
+    this.initializeForm()
+    this.photoPreview = this.actor.photo
+  }
+
+  getData() {
+    this.route.data
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data) => {
+        this.actor = data['data']
+      })
+  }
+
+  initializeForm() {
+    this.form = this.fb.group({
+      name: [this.actor.name, Validators.required],
+      description: [`${this.actor.description}`, Validators.required],
+      slug: [this.actor.slug, Validators.required],
+      photo: [this.actor.photo, Validators.required],
+    })
+  }
+
+  uploadFile(e: any, folder: string) {
+    const files = e.target.files;
+
+    if (files?.length > 0) {
+      const formData = new FormData();
+      formData.append('image', files[0]);
+      this.fileService.updateFile(formData, folder).subscribe((data) => {
+        this.photoPreview = data[0].url
+        this.form.get('photo')?.patchValue(data[0].url)
+      });
+    }
+  }
+
+  onSubmit() {
+    this.actorService.updateActor(this.actor._id, this.form.value)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.router.navigate(['/admin/actors'])
+        this.form.reset()
+      }, error =>
+        this.toastr.error(error.message))
+  }
+}

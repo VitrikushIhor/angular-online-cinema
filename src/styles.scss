@@ -1,0 +1,31 @@
+@import 'ngx-toastr/toastr';
+@import "./app/styles/null";
+@import "./app/styles/fonts";
+
+
+.pagination {
+  padding: 20px;
+  color: white;
+
+  li a {
+    color: white !important;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+}
+
+
+.ngx-pagination .current,
+.btn-info {
+  background: #673ab7 !important;
+  border: transparent !important;
+  border-radius: 10px !important;
+}
+
+.ngx-pagination .current:hover {
+  background: #673ab7 !important;
+  border-radius: 10px !important;
+  border: transparent !important;
+}

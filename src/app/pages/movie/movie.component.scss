@@ -1,0 +1,21 @@
+.movie {
+  padding: 20px 20px;
+  overflow-y: auto;
+
+  &__similar {
+    margin: 50px 0;
+
+    &__content {
+      display: flex;
+      justify-content: space-between;
+      img {
+        width: 200px;
+        height: 250px;
+        border-radius: 10px;
+        &:hover{
+          border: 1px solid #673ab7;
+        }
+      }
+    }
+  }
+}

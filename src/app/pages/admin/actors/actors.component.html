@@ -1,0 +1,36 @@
+<section class="actors">
+  <app-admin-navbar></app-admin-navbar>
+  <h1>Actors</h1>
+  <div class="actors__content">
+    <div class="actors__search">
+      <div>
+        <input [formControl]="searchQueryControl" type="text" placeholder="Search">
+        <mat-icon>search</mat-icon>
+      </div>
+      <button (click)="createActor()" type="submit" mat-raised-button color="primary">Create New</button>
+    </div>
+    <div class="actors__table">
+
+      <div class="item itemHeader">
+        <div>Name</div>
+        <div>Count Movies</div>
+        <div>Actions</div>
+      </div>
+
+      <mat-spinner style="margin: 0 auto;padding-top: 10px" *ngIf="isLoading"></mat-spinner>
+
+      <div class="item" *ngFor="let actor of actors | paginate :{ itemsPerPage:5,currentPage}">
+        <div>{{actor.name}}</div>
+        <div>
+          {{actor.countMovies}}
+        </div>
+        <div>
+          <mat-icon (click)="onRedirect(actor._id)">edit</mat-icon>
+          <mat-icon (click)="removeActor(actor._id)">delete</mat-icon>
+        </div>
+      </div>
+      <pagination-controls class="pagination" (pageChange)="currentPage=$event"></pagination-controls>
+
+    </div>
+  </div>
+</section>

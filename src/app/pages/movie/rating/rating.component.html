@@ -1,0 +1,14 @@
+<form [formGroup]="form" class="wrapper">
+  <h3>How do you like the movie?</h3>
+  <p>Rating improve recommendations</p>
+  <ng-container *ngIf="user;else notAuth">
+    <ngx-star-rating class="rating" (click)="setRating()" formControlName="rating"
+                     [id]="'rating'"></ngx-star-rating>
+    <div *ngIf="form.valid" class="thanks">Thanks for rating!</div>
+  </ng-container>
+  <ng-template #notAuth>
+    <button class="button" (click)="onRedirect(slug)" mat-raised-button color="primary">Sing in</button>
+  </ng-template>
+</form>
+
+

@@ -1,0 +1,73 @@
+<section class="sidebar">
+  <div class="search">
+    <input [formControl]="searchQueryControl" type="text" placeholder="Search">
+    <mat-icon>search</mat-icon>
+    <div class="movies">
+      <div class="movies__container" *ngFor="let movie of movies">
+        <img src="https://online-cinema-api.onrender.com{{movie.poster}}" alt="{{movie.title}}">
+        <div class="movies__content">
+          <h3>{{movie.title}}</h3>
+          <div class="movies__content__infos">
+            <div>
+              <span>Rating {{movie.rating | roundRating}}</span>
+              <mat-icon>star</mat-icon>
+            </div>
+            <div>
+              <span>Viewed {{movie.countOpened}}</span>
+              <mat-icon>visibility</mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="movies.length === 0 &&  searchQueryControl.value !== '' ">
+        Movies Not Found
+      </div>
+    </div>
+  </div>
+  <div *ngIf="loading" class="trending_movies">
+    <h2>Popular Movies</h2>
+    <div *ngFor="let movie of (trendingMovies$ | async)?.slice(0,3)">
+      <a routerLink="/movie/{{movie.slug}}" class="trending_movies__content">
+        <img src="https://online-cinema-api.onrender.com{{movie.poster}}" alt="">
+        <div class="trending_movies__content__infos">
+          <h3>{{movie.title}}</h3>
+          <span *ngFor="let genre of movie.genres; let i = index;">
+            {{ i | genresList: movie.genres.length: genre.name }}
+        </span>
+          <div>
+            <span>{{movie.rating | roundRating}}</span>
+            <mat-icon>star</mat-icon>
+          </div>
+        </div>
+      </a>
+    </div>
+    <button class="button" (click)="onRedirect('trending')" mat-raised-button color="primary">See More</button>
+  </div>
+
+  <div *ngIf="user; else notAuthBlock">
+    <div *ngIf="favorites.length > 0" class="favorites">
+      <h2>Favorites</h2>
+      <div *ngFor="let favorite of favorites">
+        <a routerLink="/movie/{{favorite.slug}}" class="trending_movies__content">
+          <img src="https://online-cinema-api.onrender.com{{favorite.poster}}" alt="">
+          <div class="trending_movies__content__infos">
+            <h3>{{favorite.title}}</h3>
+            <span *ngFor="let genre of favorite.genres; let i = index;">
+            {{ i | genresList: favorite.genres.length: genre.name }}
+        </span>
+            <div>
+              <span>{{favorite.rating | roundRating}}</span>
+              <mat-icon>star</mat-icon>
+            </div>
+          </div>
+        </a>
+      </div>
+      <button class="button" (click)="onRedirect('favorites')" mat-raised-button color="primary">See Favorites</button>
+    </div>
+  </div>
+
+  <ng-template #notAuthBlock>
+    <div class="not-auth">For viewing favorites please authorize!</div>
+  </ng-template>
+
+</section>

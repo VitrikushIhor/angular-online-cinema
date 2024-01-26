@@ -1,0 +1,19 @@
+<section class="favorites">
+  <mat-spinner class="spinner" *ngIf="isLoading"></mat-spinner>
+  <h1>Favorites</h1>
+  <div class="discovery__content">
+    <a *ngFor="let movie of favorites" [routerLink]="['/movie',movie.slug]">
+      <div class="article-card">
+        <app-favorite-button class="favorite-btn" [isSmashed]="favoritesIds.has(movie._id)"
+                             (buttonClick)="toggleFavorite(movie._id)"></app-favorite-button>
+        <div class="content">
+          <p class="title">{{movie.title}}</p>
+        </div>
+        <img src="https://online-cinema-api.onrender.com{{movie.poster}}" alt="article-cover"/>
+      </div>
+    </a>
+  </div>
+  <p *ngIf="favorites.length === 0">
+    You need add something to favorites
+  </p>
+</section>

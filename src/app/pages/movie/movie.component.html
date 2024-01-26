@@ -1,0 +1,15 @@
+<section class="movie">
+  <app-banner [movie]="movie"></app-banner>
+  <app-video-player [videoUrl]="movie.videoUrl" [slug]="movie.slug"></app-video-player>
+  <app-comment [movie]="movie"></app-comment>
+
+  <div class="movie__similar">
+    <h2>Similar</h2>
+    <div class="movie__similar__content">
+      <a routerLink="{{similarMovie.url}}" *ngFor="let similarMovie of similarMovies">
+        <img src="https://online-cinema-api.onrender.com{{similarMovie.poster}}" alt="{{similarMovie.name}}">
+      </a>
+    </div>
+  </div>
+  <app-rating [slug]="movie.slug" [movieId]="movie._id"></app-rating>
+</section>

@@ -1,0 +1,62 @@
+.movie-create {
+  padding: 20px;
+}
+
+.form {
+  padding: 20px;
+
+  &__inputs {
+    display: flex;
+  }
+
+  &__input {
+    width: 20%;
+    margin-right: 10px;
+
+    p {
+      font-size: 1.3rem;
+    }
+  }
+
+  .selects {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__button {
+    height: 45px;
+    width: 200px;
+    display: grid;
+    place-items: center;
+    margin: 40px auto 0;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background-color: #673ab7 !important;
+    }
+  }
+
+}
+
+.photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  img {
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}

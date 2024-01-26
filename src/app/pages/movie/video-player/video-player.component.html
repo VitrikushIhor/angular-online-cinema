@@ -1,0 +1,59 @@
+<div [ngClass]="{ 'wrapper': true, 'notAuth': !user }">
+  <ng-container *ngIf="user; else authPlaceholder">
+    <video
+      #videoElement
+      (timeupdate)="updateProgress()"
+      src="https://online-cinema-api.onrender.com{{videoUrl}}"
+      preload="metadata"
+      class="video"
+    >
+    </video>
+
+    <div class="progressBarContainer">
+      <div [style.width.%]="progress" class="progressBar"></div>
+    </div>
+
+    <div class="controls">
+      <div>
+        <button (click)="revert()">
+          <mat-icon>history</mat-icon>
+        </button>
+
+        <button
+          (click)="toggleVideo()"
+          class="playButton"
+        >
+          <mat-icon>
+            {{isPlaying ? "pause" : "play_arrow"}}
+          </mat-icon>
+        </button>
+
+        <button (click)="forward()">
+          <mat-icon>update</mat-icon>
+        </button>
+
+        <div class="timeControls">
+          <p class="controlsTime">
+            {{ Math.floor(currentTime / 60) + ':' + ('0' + Math.floor(currentTime % 60)).slice(-2) }}
+          </p>
+          <p> / </p>
+          <p class="controlsTime">
+            {{ Math.floor(videoTime / 60) + ':' + ('0' + Math.floor(videoTime % 60)).slice(-2) }}
+          </p>
+        </div>
+        <div>
+          <button class="fullWidth" (click)="fullScreen()">
+            <mat-icon>fullscreen</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #authPlaceholder>
+    <div class="placeholder">
+      <div>You most logged in to start watching</div>
+      <button class="button" (click)="onRedirect(slug)" mat-raised-button color="primary">Sing in</button>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,33 @@
+<section class="genres">
+  <app-admin-navbar></app-admin-navbar>
+  <h1>Actors</h1>
+  <div class="genres__content">
+    <div class="genres__search">
+      <div>
+        <input [formControl]="searchQueryControl" type="text" placeholder="Search">
+        <mat-icon>search</mat-icon>
+      </div>
+      <button (click)="createGenre()" type="submit" mat-raised-button color="primary">Create Genre</button>
+    </div>
+    <div class="genres__table">
+
+      <div class="item itemHeader">
+        <div>Name</div>
+        <div>Slug</div>
+        <div>Actions</div>
+      </div>
+
+      <mat-spinner style="margin: 0 auto;padding-top: 10px" *ngIf="isLoading"></mat-spinner>
+
+      <div class="item" *ngFor="let genre of genres| paginate :{ itemsPerPage:5,currentPage}">
+        <div>{{genre.name}}</div>
+        <div>{{genre.slug}}</div>
+        <div>
+          <mat-icon (click)="onRedirect(genre._id)">edit</mat-icon>
+          <mat-icon (click)="removeGenre(genre._id)">delete</mat-icon>
+        </div>
+      </div>
+      <pagination-controls class="pagination" (pageChange)="currentPage=$event"></pagination-controls>
+    </div>
+  </div>
+</section>

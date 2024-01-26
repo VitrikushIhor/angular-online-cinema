@@ -1,0 +1,60 @@
+<header class="header">
+  <app-logo></app-logo>
+  <div class="header__menu">
+    <h2 class="header__title">Menu</h2>
+    <ul class="header__navbar">
+      <li routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>home</mat-icon>
+        <a routerLink="/">Home</a>
+      </li>
+      <li routerLinkActive="active-link">
+        <mat-icon>explore</mat-icon>
+        <a routerLink="/discovery">Discovery</a>
+      </li>
+      <li routerLinkActive="active-link">
+        <mat-icon>refresh</mat-icon>
+        <a routerLink="/fresh">Fresh Movies</a>
+      </li>
+      <li routerLinkActive="active-link">
+        <mat-icon>local_fire_department</mat-icon>
+        <a routerLink="/trending">Trending Now</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="header__menu">
+    <h2 class="header__title">Genres</h2>
+    <mat-spinner class="spinner" *ngIf="isLoading"></mat-spinner>
+    <ul class="header__navbar" *ngFor="let genre of genres.slice(0,7)">
+      <li routerLinkActive="active-link">
+        <a routerLink="/genre/{{genre.slug}}">{{genre.name}}</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="header__menu">
+    <h2 class="header__title">General</h2>
+    <ul class="header__navbar">
+      <li routerLinkActive="active-link">
+        <mat-icon>person</mat-icon>
+        <a routerLink="/profile">Profile</a>
+      </li>
+      <li *ngIf="!user" routerLinkActive="active-link">
+        <mat-icon>login</mat-icon>
+        <a routerLink="/login">Login</a>
+      </li>
+      <li *ngIf="!user" routerLinkActive="active-link">
+        <mat-icon>login</mat-icon>
+        <a routerLink="/register">Register</a>
+      </li>
+      <li *ngIf="user?.isAdmin" routerLinkActive="active-link">
+        <mat-icon>dashboard</mat-icon>
+        <a routerLink="/admin/statistics">Dashboard</a>
+      </li>
+      <li *ngIf="user" routerLinkActive="active-link">
+        <mat-icon>logout</mat-icon>
+        <a (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</header>

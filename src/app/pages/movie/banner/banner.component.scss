@@ -1,0 +1,83 @@
+.banner {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 250px;
+  border-radius: 20px;
+  box-shadow: 3px 0px 14px 7px rgba(15, 12, 15, 1);
+
+  .favorite-btn{
+    position: absolute;
+    right: 50px;
+  }
+
+  &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: linear-gradient(
+        90deg,
+        #101215 3.31%,
+        rgba(#101215, 0.99) 7.71%,
+        rgba(#101215, 0.96) 12.11%,
+        rgba(#101215, 0.91) 16.51%,
+        rgba(#101215, 0.85) 20.91%,
+        rgba(#101215, 0.76) 25.31%,
+        rgba(#101215, 0.67) 29.71%,
+        rgba(#101215, 0.55) 34.11%,
+        rgba(#101215, 0.44) 38.52%,
+        rgba(#101215, 0.33) 42.92%,
+        rgba(#101215, 0.23) 47.32%,
+        rgba(#101215, 0.15) 51.72%,
+        rgba(#101215, 0.08) 56.12%,
+        rgba(#101215, 0.03) 60.52%,
+        rgba(#101215, 0.01) 64.92%,
+        rgba(#101215, 0) 69.32%
+    );
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    pointer-events: none;
+    object-position: top;
+  }
+
+  &__content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 70px;
+    padding: 20px;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+
+    &__genres, &__actors {
+      span {
+        color: rgb(255 255 255 / 0.8);
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 15px;
+      }
+
+      a {
+        padding-bottom: 1px;
+        margin-right: 3px;
+        border-bottom: 1px solid rgb(255 255 255 / 0.8);
+        font-size: 12px;
+
+        &:hover {
+          border-bottom: 1px solid #673ab7;
+        }
+      }
+    }
+  }
+}

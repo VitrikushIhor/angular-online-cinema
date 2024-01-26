@@ -1,0 +1,19 @@
+<a [routerLink]="['/movie',movie.slug]">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{movie.title}}</mat-card-title>
+        <mat-card-subtitle>Rating : {{movie.rating | roundRating}}</mat-card-subtitle>
+        <img mat-card-md-image src="https://online-cinema-api.onrender.com{{movie.poster}}"
+             alt="{{movie.title}}">
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <p>Country: {{movie.parameters.country}}{{" "}}</p>
+        <span>Year: {{movie.parameters.year}}{{" "}}</span>
+        <span>Duration: {{movie.parameters.duration}} hv</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</a>

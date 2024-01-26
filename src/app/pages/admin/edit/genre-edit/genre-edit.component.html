@@ -1,0 +1,35 @@
+<section class="actor-create">
+  <app-admin-navbar></app-admin-navbar>
+  <h1>Edit Genre</h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <div class="form__inputs">
+      <div class="form__input">
+        <p>Name</p>
+        <mat-form-field class="example-full-width">
+          <mat-label>Name</mat-label>
+          <input formControlName="name" type="text" matInput placeholder="name">
+        </mat-form-field>
+      </div>
+      <div class="form__input">
+        <p>Description</p>
+        <mat-form-field class="example-full-width">
+          <mat-label>Description</mat-label>
+          <input formControlName="description" type="text" matInput placeholder="Description">
+        </mat-form-field>
+      </div>
+      <div class="form__input">
+        <p>Slug</p>
+        <mat-form-field class="example-full-width">
+          <mat-label>Slug</mat-label>
+          <input formControlName="slug" type="text" matInput placeholder="Slug">
+        </mat-form-field>
+      </div>
+    </div>
+    <button
+      [disabled]="!this.form.valid"
+      type="submit" class="form__button" mat-raised-button color="primary">Update
+      Genre
+    </button>
+  </form>
+
+</section>

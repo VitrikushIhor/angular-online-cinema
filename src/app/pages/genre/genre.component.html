@@ -1,0 +1,28 @@
+<section class="genre">
+  <h1 class="genre-title">{{genre.name}}</h1>
+  <p class="genre-description">{{genre.description}}</p>
+  <div class="genre__content">
+
+    <article class="card" *ngFor="let movie of movies">
+      <figure class="card-image">
+        <img
+          src="https://online-cinema-api.onrender.com{{movie.poster}}"
+          alt="An orange painted blue, cut in half laying on a blue background"/>
+      </figure>
+      <div class="card-header">
+        <a href="#">{{movie.title}}</a>
+      </div>
+      <div class="card-footer">
+        <div class="card-meta card-meta--views">
+          <mat-icon>visibility</mat-icon>
+          {{movie.countOpened}}
+        </div>
+        <div class="card-meta card-meta--date">
+          <mat-icon>calendar_month</mat-icon>
+          {{movie.createdAt |date}}
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>

@@ -1,0 +1,36 @@
+<section class="edit-user">
+  <app-admin-navbar></app-admin-navbar>
+  <h1>Edit User</h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <div class="form__inputs">
+      <p>Email Now : {{user.email}}</p>
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" type="email" matInput placeholder="email">
+        <mat-error *ngIf="form.get('email')?.hasError('email')">Please enter a valid Email</mat-error>
+      </mat-form-field>
+      <p>Password Now : {{user.password}}</p>
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input formControlName="password" type="password" matInput placeholder="password">
+      </mat-form-field>
+      <p>UserName Now : {{user.userName}}</p>
+      <mat-form-field class="example-full-width">
+        <mat-label>UserName</mat-label>
+        <input formControlName="userName" type="text" matInput placeholder="user name">
+      </mat-form-field>
+    </div>
+    <div class="photo">
+      <h3>Photo</h3>
+      <input type="file" accept="image/*" (change)="uploadPhoto($event)" formControlName="avatar"/>
+      <img *ngIf="previewImageUrl" [src]="previewImageUrl" alt="preload image"/>
+    </div>
+    <button class="textLink" (click)="toggleAdmin()">
+      {{ isAdmin ? 'Make it regular user' : 'Make it admin' }}
+    </button>
+    <button [disabled]="form.invalid" type="submit" class="form__button" mat-raised-button color="primary">Update
+      User
+    </button>
+  </form>
+
+</section>

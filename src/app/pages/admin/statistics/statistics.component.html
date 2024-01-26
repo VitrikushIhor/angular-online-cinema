@@ -1,0 +1,18 @@
+<section class="statistics">
+  <app-admin-navbar></app-admin-navbar>
+  <h1>Statistics</h1>
+  <mat-spinner class="spinner" *ngIf="isLoading"></mat-spinner>
+  <div class="statistics__content">
+    <div class="statistics__users block">
+      <p class="number">{{countUsers}}</p>
+      <span class="description">users</span>
+    </div>
+    <div class="statistics__popular block">
+      <h3>The most popular movie</h3>
+      <p class="descriptionsHeading">Opened {{popularMovie.countOpened}} times</p>
+      <a class="link" routerLink="movie/{{popularMovie.slug}}">
+        <img src="https://online-cinema-api.onrender.com{{popularMovie.poster}}" alt="{{popularMovie.title}}">
+      </a>
+    </div>
+  </div>
+</section>

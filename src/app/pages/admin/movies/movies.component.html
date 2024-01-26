@@ -1,0 +1,39 @@
+<section class="movies">
+  <app-admin-navbar></app-admin-navbar>
+  <h1>Users</h1>
+  <div class="movies__content">
+    <div class="movies__search">
+      <div>
+        <input [formControl]="searchQueryControl" type="text" placeholder="Search">
+        <mat-icon>search</mat-icon>
+      </div>
+      <button (click)="createMovie()" type="submit" mat-raised-button color="primary">Create New</button>
+    </div>
+    <div class="movies__table">
+
+      <div class="item itemHeader">
+        <div>Title</div>
+        <div>Genre</div>
+        <div>Rating</div>
+        <div>Actions</div>
+      </div>
+
+      <mat-spinner style="margin: 0 auto;padding-top: 10px" *ngIf="isLoading"></mat-spinner>
+
+      <div class="item" *ngFor="let movie of movies | paginate :{ itemsPerPage:5,currentPage}">
+        <div>{{movie.title}}</div>
+        <div>
+            <span *ngFor="let genre of movie.genres; let i = index;">
+            {{ i | genresList: movie.genres.length: genre.name }}
+        </span>
+        </div>
+        <div>{{movie.rating | roundRating}}</div>
+        <div>
+          <mat-icon (click)="onRedirect(movie._id)">edit</mat-icon>
+          <mat-icon (click)="removeMovie(movie._id)">delete</mat-icon>
+        </div>
+      </div>
+      <pagination-controls class="pagination" (pageChange)="currentPage=$event"></pagination-controls>
+    </div>
+  </div>
+</section>

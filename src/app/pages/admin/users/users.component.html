@@ -1,0 +1,30 @@
+<section class="users">
+  <app-admin-navbar></app-admin-navbar>
+  <h1>Users</h1>
+  <div class="users__content">
+    <div class="users__search">
+      <input [formControl]="searchQueryControl" type="text" placeholder="Search">
+      <mat-icon>search</mat-icon>
+    </div>
+    <div class="users__table">
+
+      <div class="item itemHeader">
+        <div>Email</div>
+        <div>Date register</div>
+        <div>Actions</div>
+      </div>
+
+      <mat-spinner style="margin: 0 auto;padding-top: 10px" *ngIf="isLoading"></mat-spinner>
+
+      <div class="item" *ngFor="let user of users | paginate :{ itemsPerPage:5,currentPage}">
+        <div>{{user.email}}</div>
+        <div>{{user.createdAt | convertDate}}</div>
+        <div>
+          <mat-icon (click)="onRedirect(user._id)">edit</mat-icon>
+          <mat-icon (click)="deleteUser(user._id)">delete</mat-icon>
+        </div>
+      </div>
+    </div>
+    <pagination-controls class="pagination" (pageChange)="currentPage=$event"></pagination-controls>
+  </div>
+</section>
